@@ -38,7 +38,7 @@ For linting the shell scripts the following package is required:
 Profiles
 ========
 
-Archiso comes with two profiles: **baseline** and **releng**. While both can serve as starting points for creating
+ADKiso comes with two profiles: **baseline** and **releng**. While both can serve as starting points for creating
 custom live media, **releng** is used to create the monthly installation medium.
 They can be found below `configs/baseline/ <configs/baseline/>`_  and `configs/releng/ <configs/releng/>`_
 (respectively). Both profiles are defined by files to be placed into overlays (e.g. airootfs ‎→‎ the image's ``/``).
@@ -157,4 +157,4 @@ Releases
 License
 =======
 
-Archiso is licensed under the terms of the **GPL-3.0-or-later** (see `LICENSE <LICENSE>`_).
+ADKiso is licensed under the terms of the **GPL-3.0-or-later** (see `LICENSE <LICENSE>`_).
