@@ -1,8 +1,8 @@
 =======
-archiso
+adkiso
 =======
 
-The archiso project features scripts and configuration templates to build installation media (*.iso* images and
+The adkiso project features scripts and configuration templates to build installation media (*.iso* images and
 *.tar.gz* bootstrap images) as well as netboot artifacts for BIOS and UEFI based systems on the x86_64 architecture.
 Currently creating the images is only supported on Arch Linux but may work on other operating systems as well.
 
@@ -48,14 +48,14 @@ Read `README.profile.rst <docs/README.profile.rst>`_ to learn more about how to 
 Create images
 =============
 
-Usually the archiso tools are installed as a package. However, it is also possible to clone this repository and create
-images without installing archiso system-wide.
+Usually the adkiso tools are installed as a package. However, it is also possible to clone this repository and create
+images without installing adkiso system-wide.
 
 As filesystems are created and various mount actions have to be done when creating an image, **root** is required to run
 the scripts.
 
-When archiso is installed system-wide and the modification of a profile is desired, it is necessary to copy it to a
-writeable location, as ``/usr/share/archiso`` is tracked by the package manager and only writeable by root (changes will
+When adkiso is installed system-wide and the modification of a profile is desired, it is necessary to copy it to a
+writeable location, as ``/usr/share/adkiso`` is tracked by the package manager and only writeable by root (changes will
 be lost on update).
 
 The examples below will assume an unmodified profile in a system location (unless noted otherwise).
@@ -66,7 +66,7 @@ It is advised to consult the help output of **mkarchiso**:
 
    mkarchiso -h
 
-Create images with packaged archiso
+Create images with packaged adkiso
 -----------------------------------
 
 .. code:: sh
@@ -80,7 +80,7 @@ Clone this repository and run:
 
 .. code:: sh
 
-   ./archiso/mkarchiso -w path/to/work_dir -o path/to/out_dir path/to/profile
+   ./adkiso/mkarchiso -w path/to/work_dir -o path/to/out_dir path/to/profile
 
 Testing
 =======
@@ -114,7 +114,7 @@ The script can of course also be executed from this repository:
 Installation
 ============
 
-To install archiso system-wide use the included ``Makefile``:
+To install adkiso system-wide use the included ``Makefile``:
 
 .. code:: sh
 
@@ -136,7 +136,7 @@ boot the iso image from GRUB with a version specific cow directory to mitigate o
 Contribute
 ==========
 
-Development of archiso takes place on Arch Linux' Gitlab: https://gitlab.archlinux.org/archlinux/archiso.
+Development of adkiso takes place on Arch Linux' Gitlab: https://gitlab.archlinux.org/archlinux/archiso.
 
 Please read our distribution-wide `Code of Conduct <https://wiki.archlinux.org/title/Code_of_conduct>`_ before
 contributing, to understand what actions will and will not be tolerated.
@@ -144,11 +144,11 @@ contributing, to understand what actions will and will not be tolerated.
 Read our `contributing guide <CONTRIBUTING.rst>`_ to learn more about how to provide fixes or improvements for the code
 base.
 
-Discussion around archiso takes place on the `arch-releng mailing list
+Discussion around adkiso takes place on the `arch-releng mailing list
 <https://lists.archlinux.org/listinfo/arch-releng>`_ and in `#archlinux-releng
 <ircs://irc.libera.chat/archlinux-releng>`_ on `Libera Chat <https://libera.chat/>`_.
 
-All past and present authors of archiso are listed in `AUTHORS <AUTHORS.rst>`_.
+All past and present authors of adkiso are listed in `AUTHORS <AUTHORS.rst>`_.
 
 Releases
 ========
