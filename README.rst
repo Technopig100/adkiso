@@ -145,10 +145,6 @@ contributing, to understand what actions will and will not be tolerated.
 Read our `contributing guide <CONTRIBUTING.rst>`_ to learn more about how to provide fixes or improvements for the code
 base.
 
-Discussion around adkiso takes place on the `arch-releng mailing list
-<https://lists.archlinux.org/listinfo/arch-releng>`_ and in `#archlinux-releng
-<ircs://irc.libera.chat/archlinux-releng>`_ on `Libera Chat <https://libera.chat/>`_.
-
 All past and present authors of adkiso are listed in `AUTHORS <AUTHORS.rst>`_.
 
 Releases
