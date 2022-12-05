@@ -7,7 +7,7 @@ DOC_DIR=$(DESTDIR)$(PREFIX)/share/doc/adkiso
 PROFILE_DIR=$(DESTDIR)$(PREFIX)/share/adkiso
 
 DOC_FILES=$(wildcard docs/*) $(wildcard *.rst)
-SCRIPT_FILES=$(wildcard adkiso/*) $(wildcard scripts/*.sh) $(wildcard .gitlab/ci/*.sh) \
+SCRIPT_FILES=$(wildcard adkiso/*) $(wildcard scripts/*.sh) \
              $(wildcard configs/*/profiledef.sh) $(wildcard configs/*/airootfs/usr/local/bin/*)
 
 all:
