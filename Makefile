@@ -14,8 +14,8 @@ all:
 
 check: shellcheck
 
-shellcheck:
-	shellcheck -s bash $(SCRIPT_FILES)
+#shellcheck:
+#	shellcheck -s bash $(SCRIPT_FILES)
 
 install: install-scripts install-profiles install-doc
 
