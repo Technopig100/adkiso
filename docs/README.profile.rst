@@ -2,7 +2,7 @@
 profile
 =======
 
-An archiso profile consists of several configuration files and a directory for files to be added to the resulting image.
+An adkiso profile consists of several configuration files and a directory for files to be added to the resulting image.
 
 .. code:: plaintext
 
@@ -25,16 +25,16 @@ This file describes several attributes of the resulting image and is a place for
 of the image.
 
 The image file is constructed from some of the variables in ``profiledef.sh``: ``<iso_name>-<iso_version>-<arch>.iso``
-(e.g. ``archlinux-202010-x86_64.iso``).
+(e.g. ``adklinux-202010-x86_64.iso``).
 
-* ``iso_name``: The first part of the name of the resulting image (defaults to ``mkarchiso``)
-* ``iso_label``: The ISO's volume label (defaults to ``MKARCHISO``)
-* ``iso_publisher``: A free-form string that states the publisher of the resulting image (defaults to ``mkarchiso``)
+* ``iso_name``: The first part of the name of the resulting image (defaults to ``mkadkiso``)
+* ``iso_label``: The ISO's volume label (defaults to ``MKADKISO``)
+* ``iso_publisher``: A free-form string that states the publisher of the resulting image (defaults to ``mkadkiso``)
 * ``iso_application``: A free-form string that states the application (i.e. its use-case) of the resulting image (defaults
-  to ``mkarchiso iso``)
+  to ``mkadkiso iso``)
 * ``iso_version``: A string that states the version of the resulting image (defaults to ``""``)
 * ``install_dir``: A string (maximum eight characters long, which **must** consist of ``[a-z0-9]``) that states the
-  directory on the resulting image into which all files will be installed (defaults to ``mkarchiso``)
+  directory on the resulting image into which all files will be installed (defaults to ``mkadkiso``)
 * ``buildmodes``: An optional list of strings, that state the build modes that the profile uses. Only the following are
   understood:
 
@@ -68,7 +68,7 @@ The image file is constructed from some of the variables in ``profiledef.sh``: `
   permissions. The array's keys contain the path and the value is a colon separated list of owner UID, owner GID and
   access mode. E.g. ``file_permissions=(["/etc/shadow"]="0:0:400")``. When directories are listed with a trailing backslash (``/``) **all** files and directories contained within the listed directory will have the same owner UID, owner GID, and access mode applied recursively.
 
-bootstrap_packages.arch
+bootstrap_packages.adk
 =======================
 
 All packages to be installed into the environment of a bootstrap image have to be listed in an architecture specific
@@ -88,8 +88,8 @@ Packages have to be listed one per line. Lines starting with a ``#`` and blank l
 
   .. note::
 
-    The **mkinitcpio** and **mkinitcpio-archiso** packages are mandatory (see `#30
-    <https://gitlab.archlinux.org/archlinux/archiso/-/issues/30>`_).
+    The **mkinitcpio** and **mkinitcpio-adkiso** packages are mandatory (see `#30
+    <https://gitlab.archlinux.org/archlinux/adkiso/-/issues/30>`_).
 
 This file is required when generating ISO images using the ``iso`` or ``netboot`` build modes.
 
@@ -104,7 +104,7 @@ Some configuration options will not be used or will be modified:
   not the same as the system's option. In all other cases the system's pacman cache is used.
 * ``HookDir``: it is **always** set to the ``/etc/pacman.d/hooks`` directory in the work directory's airootfs to allow
   modification via the profile and ensure interoparability with hosts using dracut (see `#73
-  <https://gitlab.archlinux.org/archlinux/archiso/-/issues/73>`_)
+  <https://gitlab.archlinux.org/archlinux/adkiso/-/issues/73>`_)
 * ``RootDir``: it is **always** removed, as setting it explicitely otherwise refers to the host's root filesystem (see
   ``man 8 pacman`` for further information on the ``-r`` option used by ``pacstrap``)
 * ``LogFile``: it is **always** removed, as setting it explicitely otherwise refers to the host's pacman log file (see

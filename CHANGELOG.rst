@@ -22,8 +22,8 @@ Changed
 
 - Do not explicitly enable ``qemu-guest-agent.service`` as it will be started by a udev rule.
 - Remove existing signature (``.sig``) files and do not sign them when signing netboot artifacts. This is mostly
-  applicable when re-running ``mkarchiso``  after a failure.
-- Replace ``archiso_kms`` with ``kms`` in ``mkinitcpio.conf``. The hook is available in mkinitcpio since version 32.
+  applicable when re-running ``mkadkiso``  after a failure.
+- Replace ``adkiso_kms`` with ``kms`` in ``mkinitcpio.conf``. The hook is available in mkinitcpio since version 32.
 
 [67] - 2022-09-25
 =================
@@ -47,7 +47,7 @@ Changed
 Added
 -----
 
-- Add ``efibootimg`` to ``mkarchiso`` to abstract the FAT image path.
+- Add ``efibootimg`` to ``mkadkiso`` to abstract the FAT image path.
 - Unset ``LANGUAGE`` since ``LC_ALL=C.UTF-8``, unlike ``LC_ALL=C``, does not override ``LANGUAGE``.
 - Copy all files from the ``grub`` directory to ISO9660 and the FAT image, not just only ``grub.cfg``.
 - Touching ``/usr/lib/clock-epoch`` to to help ``systemd`` with screwed or broken RTC.
@@ -72,7 +72,7 @@ Changed
 -------
 
 - Change the releng profile's locale from ``en_US.UTF-8`` to ``C.UTF-8``.
-- Set ``LC_ALL`` to ``C.UTF-8`` instead of ``C`` in mkarchiso since it is now available and non-UTF-8 locales should be
+- Set ``LC_ALL`` to ``C.UTF-8`` instead of ``C`` in mkadkiso since it is now available and non-UTF-8 locales should be
   avoided.
 
 Removed
@@ -80,7 +80,7 @@ Removed
 
 - Remove the custom pacman hook that ran ``locale-gen`` on glibc install from the releng profile. The used locale now
   ships with the glibc package itself.
-- Remove "Copy to RAM" boot entries since the ``archiso`` mkinitcpio hook enables it automatically when there is enough
+- Remove "Copy to RAM" boot entries since the ``adkiso`` mkinitcpio hook enables it automatically when there is enough
   free RAM.
 
 [64] - 2022-05-30
@@ -131,7 +131,7 @@ Removed
 Changed
 -------
 
-- Fix the PXE support. PXELINUX was having trouble finding the kernel and initrds. Now, archiso forces syslinux to
+- Fix the PXE support. PXELINUX was having trouble finding the kernel and initrds. Now, adkiso forces syslinux to
   interpret all TFTP paths as absolute. That seems to have solved the issue.
 - Disable systemd-gpt-auto-generator, which we do not need, in both baseline and releng profiles. It avoids the error
   message about it failing during boot.
@@ -151,8 +151,8 @@ Added
 Changed
 -------
 
-- Fix an issue where mkarchiso is failing to raise an error when the ``mmd`` and ``mcopy`` commands are not found
-- Fix an issue where the architecture detection in mkarchiso fails due to an unset ``arch`` variable in the profile
+- Fix an issue where mkadkiso is failing to raise an error when the ``mmd`` and ``mcopy`` commands are not found
+- Fix an issue where the architecture detection in mkadkiso fails due to an unset ``arch`` variable in the profile
 
 Removed
 -------
@@ -174,7 +174,7 @@ Changed
 Removed
 -------
 
-- Remove unused archiso_shutdown hook from the releng profile's mkinitcpio config
+- Remove unused adkiso_shutdown hook from the releng profile's mkinitcpio config
 
 [59] - 2021-11-30
 =================
@@ -208,7 +208,7 @@ Added
 Changed
 -------
 
-- Change the way ``mkarchiso`` uses ext4 images to copying files to it directly instead of mounting (this action now
+- Change the way ``mkadkiso`` uses ext4 images to copying files to it directly instead of mounting (this action now
   does not require elevated privileges anymore)
 - Add version files when using ``netboot`` buildmode as well
 - Update the sshd configuration to be compatible with openssh 8.7p1
@@ -220,7 +220,7 @@ Removed
 -------
 
 - Remove all files related to ``mkinitcpio`` integration, as they now live in
-  https://gitlab.archlinux.org/mkinitcpio/mkinitcpio-archiso
+  https://gitlab.archlinux.org/mkinitcpio/mkinitcpio-adkiso
 
 [57] - 2021-07-30
 =================
@@ -234,7 +234,7 @@ Changed
 -------
 
 - Adapt systemd-networkd configuration to systemd ≥ 249
-- Improve documentation in ``mkarchiso`` and systemd-networkd related configuration files
+- Improve documentation in ``mkadkiso`` and systemd-networkd related configuration files
 - Fix an issue that may prevent continuing an aborted build of the ``netboot`` or ``iso`` buildmode
 
 Removed
@@ -296,11 +296,11 @@ Changed
 Added
 -----
 
-- Add the concept of buildmodes to mkarchiso, which allows for building more than the default .iso artifact
+- Add the concept of buildmodes to mkadkiso, which allows for building more than the default .iso artifact
   (sequentially)
-- Add support to mkarchiso and both baseline and releng profiles for building a bootstrap image (a compressed
+- Add support to mkadkiso and both baseline and releng profiles for building a bootstrap image (a compressed
   bootstrapped Arch Linux environment), by using the new buildmode `bootstrap`
-- Add support to mkarchiso and both baseline and releng profiles for building artifacts required for netboot with iPXE
+- Add support to mkadkiso and both baseline and releng profiles for building artifacts required for netboot with iPXE
   (optionally allowing codesigning on the artifacts), by using the new buildmode `netboot`
 - Add qemu-guest-agent and virtualbox-guest-utils-nox to the releng profile and enable their services by default to
   allow interaction between hypervisor and virtual machine if the installation medium is booted in a virtualized
@@ -309,14 +309,14 @@ Added
 Changed
 -------
 
-- Always use the .sig file extension when signing the rootfs image, as that is how mkinitcpio-archiso expects it
-- Fix for CI and run_archiso scripts to be compatible with QEMU >= 6.0
+- Always use the .sig file extension when signing the rootfs image, as that is how mkinitcpio-adkiso expects it
+- Fix for CI and run_adkiso scripts to be compatible with QEMU >= 6.0
 - Increase robustness of CI by granting more time to reach the first prompt
 - Change CI to build all available buildmodes of the baseline and releng profiles (baseline's netboot is currently
   excluded due to a bug)
 - Install all implicitly installed packages explicitly for the releng profile
 - Install keyrings more generically when using pacman-init.service
-- Consolidate CI scripts so that they may be shared between the archiso, arch-boxes and releng project in the future and
+- Consolidate CI scripts so that they may be shared between the adkiso, arch-boxes and releng project in the future and
   expose their configuration with the help of environment variables
 
 [53] - 2021-05-01
@@ -369,12 +369,12 @@ Changed
 Added
 -----
 
-- VNC support for `run_archiso`
+- VNC support for `run_adkiso`
 - SSH enabled by default in baseline and releng profiles
 - Add cloud-init support to baseline and releng profiles
-- Add simple port forwarding to `run_archiso` to allow testing of SSH
-- Add support for loading cloud-init user data images to `run_archiso`
-- Add version information to images generated with `mkarchiso`
+- Add simple port forwarding to `run_adkiso` to allow testing of SSH
+- Add support for loading cloud-init user data images to `run_adkiso`
+- Add version information to images generated with `mkadkiso`
 - Use pacman hooks for things previously done in `customize_airootfs.sh` (e.g. generating locale, uncommenting mirror
   list)
 - Add network setup for the baseline profile
@@ -384,9 +384,9 @@ Changed
 -------
 
 - Change upstream URL in vendored profiles to archlinux.org
-- Reduce the amount of sed calls in mkarchiso
-- Fix typos in `mkarchiso`
-- mkinitcpio-archiso: Remove resolv.conf before copy to circumvent its use
+- Reduce the amount of sed calls in mkadkiso
+- Fix typos in `mkadkiso`
+- mkinitcpio-adkiso: Remove resolv.conf before copy to circumvent its use
 - Remove `customize_airootfs.sh` from the vendored profiles
-- Support overriding more variables in `profiledef.sh` and refactor their use in `mkarchiso`
-- Cleanup unused code in `run_archiso`
+- Support overriding more variables in `profiledef.sh` and refactor their use in `mkadkiso`
+- Cleanup unused code in `run_adkiso`

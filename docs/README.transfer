@@ -44,7 +44,7 @@ Note: These steps are the general workflow, you can skip some of them,
       using another filesystem if your bootloader supports it,
       installing to another directory than "arch/" or using more than
       one partition. Just ensure that main boot params options
-      (archisolabel= and archisobasedir=) are set correctly according to your setup.
+      (adkisolabel= and adkisobasedir=) are set correctly according to your setup.
 
 Nomeclature:
 <DEV-TARGET>:   Device node of the drive where ISO contents should be copied
@@ -117,7 +117,7 @@ Note: Using here a GPT partition mode as example, but MBR should also works
 # mount <DEV-TARGET-N> <MNT-TARGET-N>
 
 4) Extract ISO image on target filesystem.
-# bsdtar -x --exclude=isolinux/ --exclude=EFI/archiso/ --exclude=arch/boot/syslinux/ -f <ISO-SOURCE> -C <MNT-TARGET-N>
+# bsdtar -x --exclude=isolinux/ --exclude=EFI/adkiso/ --exclude=arch/boot/syslinux/ -f <ISO-SOURCE> -C <MNT-TARGET-N>
 
 5) Unmount target filesystem.
 # umount <MNT-TARGET-N>
